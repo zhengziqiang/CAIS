@@ -1,2 +1,2 @@
 # CAIS
-The implementation of "Neural component aware image steganography via adversarial training"
+The implementation of "Component Aware Image Steganography via Adversarial Global-and-Part Checking"
