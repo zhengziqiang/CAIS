@@ -1,0 +1,5 @@
+numpy
+scipy==1.1.0
+pillow
+cv2
+gast=0.2.2
