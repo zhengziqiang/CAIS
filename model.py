@@ -200,7 +200,7 @@ class cyclegan(object):
         self.fake_stegano = self.generator(tf.concat([self.real_cover,self.real_message],axis=3), self.options, False, name="generator_hiding")
         self.recon_cover,self.recon_message = self.generator_recon(self.fake_stegano, self.options, False, name="generator_revealing")
         self.fake_part = tf.random_crop(self.fake_stegano, [1, self.patch_size, self.patch_size, 3])
-        self.real_part = tf.random_crop(self.real_message, [1, self.patch_size, self.patch_size, 3])
+        self.real_part = tf.random_crop(self.real_cover, [1, self.patch_size, self.patch_size, 3])
 
 
         self.Dstegano_fake,self.weighted_est= self.discriminator(self.fake_stegano, self.options, reuse=False, name="discriminator")
@@ -232,27 +232,27 @@ class cyclegan(object):
         self.fake_stegano_sample_part = tf.random_crop(self.fake_stegano_sample, [1, self.patch_size, self.patch_size, 3])
         self.weighted_part = tf.random_crop(self.weighted, [1, self.patch_size, self.patch_size, 3])
 
-        self.Dmessage_real,self.Dmessage_est = self.discriminator(self.real_message, self.options, reuse=True, name="discriminator")
+        self.Dcover_real,self.Dcover_est = self.discriminator(self.real_cover, self.options, reuse=True, name="discriminator")
         self.Dstegano_fake_sample,_ = self.discriminator(self.fake_stegano_sample, self.options, reuse=True, name="discriminator")
         _, self.est_real = self.discriminator(self.weighted, self.options, reuse=True,name="discriminator")
 
-        self.d_loss_real = self.criterionGAN(self.Dmessage_real, tf.ones_like(self.Dmessage_real))
+        self.d_loss_real = self.criterionGAN(self.Dcover_real, tf.ones_like(self.Dcover_real))
         self.d_loss_fake = self.criterionGAN(self.Dstegano_fake_sample, tf.zeros_like(self.Dstegano_fake_sample))
         self.d_adv_loss = (self.d_loss_real + self.d_loss_fake) / 2
-        self.Dmessage_est_loss = abs_criterion(self.Dmessage_est,tf.zeros_like(self.Dmessage_est))
+        self.Dcover_est_loss = abs_criterion(self.Dcover_est,tf.zeros_like(self.Dcover_est))
         self.weight_loss = abs_criterion(self.est_real,tf.reshape(self.alpha,[1,1,1,-1]))
-        self.d_loss = (self.d_adv_loss + self.Dmessage_est_loss+self.weight_loss)
-        self.est_loss=self.Dmessage_est_loss+self.weight_loss
+        self.d_loss = (self.d_adv_loss + self.Dcover_est_loss+self.weight_loss)
+        self.est_loss=self.Dcover_est_loss+self.weight_loss
 
-        self.Dmessage_real_part, self.Dmessage_est_part = self.discriminator(self.real_part, self.options, reuse=True,name="part")
+        self.Dcover_real_part, self.Dcover_est_part = self.discriminator(self.real_part, self.options, reuse=True,name="part")
         self.Dstegano_fake_sample_part, _ = self.discriminator(self.fake_stegano_sample_part, self.options, reuse=True,name="part")
         _, self.est_real_part = self.discriminator(self.weighted_part, self.options, reuse=True,name="part")
-        self.d_loss_real_part = self.criterionGAN(self.Dmessage_real_part, tf.ones_like(self.Dmessage_real_part))
+        self.d_loss_real_part = self.criterionGAN(self.Dcover_real_part, tf.ones_like(self.Dcover_real_part))
         self.d_loss_fake_part = self.criterionGAN(self.Dstegano_fake_sample_part, tf.zeros_like(self.Dstegano_fake_sample_part))
         self.d_adv_loss_part = (self.d_loss_real_part + self.d_loss_fake_part) / 2
-        self.Dmessage_est_loss_part = abs_criterion(self.Dmessage_est_part, tf.zeros_like(self.Dmessage_est_part))
+        self.Dcover_est_loss_part = abs_criterion(self.Dcover_est_part, tf.zeros_like(self.Dcover_est_part))
         self.weight_loss_part = abs_criterion(self.est_real_part, tf.reshape(self.alpha, [1, 1, 1, -1]))
-        self.d_loss_part = (self.d_adv_loss_part + self.Dmessage_est_loss_part + self.weight_loss_part)
+        self.d_loss_part = (self.d_adv_loss_part + self.Dcover_est_loss_part + self.weight_loss_part)
 
         ### G summary
         self.g_adv_sum = tf.summary.scalar("g_adv", self.g_adv)
