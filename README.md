@@ -70,8 +70,15 @@ You can also edit the default parameters referring the `main.py`.
 ## The detailed CAIS model
 ![Overview framework](figures/framework.png)
 
+## Pre-trained model
+* Flower: [Google Drive](https://drive.google.com/drive/folders/1F4o41UNba8I02hsx0JAmz_QeRUoHsHBY?usp=sharing); [BaiduYun](https://pan.baidu.com/s/1mF1UpfYLs_O9s1r4-0LCtA) (1u8c)
+* Flowercari: [Google Drive](https://drive.google.com/drive/folders/1F4o41UNba8I02hsx0JAmz_QeRUoHsHBY?usp=sharing); [BaiduYun](https://pan.baidu.com/s/1NOyNTDgdpR44fjt_CciWTw) (ykc3)
+* ImageNet: [Google Drive](https://drive.google.com/drive/folders/1F4o41UNba8I02hsx0JAmz_QeRUoHsHBY?usp=sharing); [BaiduYun](https://pan.baidu.com/s/1D0yst70-_1OiQZfw7i_taA) (9fto)
+
+All the models are trained at the resolution `256*256`. Please put them at the path `./check` and unzip them.
+
+
 ## TODO list
-* Upload the pre-trained model.
 * Add the analysis tools.
 
 ## Citation
