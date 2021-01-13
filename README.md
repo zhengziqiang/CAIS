@@ -4,7 +4,7 @@ CAIS is a [Tensorflow](http://tensorflow.org/)-based framework for training and 
 ## Installation
 1. We use [Anaconda3](https://www.anaconda.com/products/individual) as the basic environment. If you have installed the Anaconda3 in path `Conda_Path`, please create a new virtual environment by `conda create -n tf114`, then `source activate tf114`. Install `tensorflow-gpu` using the command `conda install tensorflow-gpu==1.14.0`.
 2. Install the dependencies by `pip install -r requirements.txt` (if necessary). The `requirements.txt` file is provided in this package.
-3. Please download the pre-trained VGG19 model [imagenet-vgg-verydeep-19.mat](https://www.vlfeat.org/matconvnet/models/imagenet-vgg-verydeep-19.mat), then place it at the current path.
+3. Please download the pre-trained VGG19 model [imagenet-vgg-verydeep-19.mat](https://pan.baidu.com/s/1wjOFCzV5pxVhgti-T7-24Q) (passwd:a8yv), then place it at the current path.
 
 ## Data preparation
 ### 102Flowers (Within-domain)
