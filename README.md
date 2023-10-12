@@ -1,6 +1,9 @@
 ## Introduction
 CAIS is a [Tensorflow](http://tensorflow.org/)-based framework for training and testing of our paper: ***Component Aware Image Steganography via Adversarial Global-and-Part Checking***.
 
+## News
+**2022.06.09** - Our paper is accepted by IEEE Transactions on Neural Networks and Learning Systems (TNNLS)
+
 ## Installation
 1. We use [Anaconda3](https://www.anaconda.com/products/individual) as the basic environment. If you have installed the Anaconda3 in path `Conda_Path`, please create a new virtual environment by `conda create -n tf114`, then `source activate tf114`. Install `tensorflow-gpu` using the command `conda install tensorflow-gpu==1.14.0`.
 2. Install the dependencies by `pip install -r requirements.txt` (if necessary). The `requirements.txt` file is provided in this package.
@@ -86,7 +89,13 @@ All the models are trained at the resolution `256*256`. Please put them at the p
 If you find our work useful in your research, please consider citing:
 
 ```bibtex
-
+@article{zheng2022composition,
+  title={Composition-Aware Image Steganography Through Adversarial Self-Generated Supervision},
+  author={Zheng, Ziqiang and Hu, Yuanmeng and Bin, Yi and Xu, Xing and Yang, Yang and Shen, Heng Tao},
+  journal={IEEE Transactions on Neural Networks and Learning Systems},
+  year={2022},
+  publisher={IEEE}
+}
 ```
 
 ## Acknowledgments
